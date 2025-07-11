@@ -3,9 +3,327 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sigara</title>
+    <title>SIGARA - Ruang Kelas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+    </style>
 </head>
-<body>
-    
+<body class="bg-gray-100 min-h-screen flex flex-col">
+
+    <header class="bg-white shadow-md p-4 flex items-center justify-between">
+        <h1 class="text-3xl font-bold text-blue-600">Halo SIGARA</h1>
+
+        <div class="flex items-center">
+            <img src="https://via.placeholder.com/40x40?text=SIGARA" alt="SIGARA Logo" class="h-10 mr-3">
+            <div class="text-sm">
+                <p class="font-bold text-gray-800">SIGARA</p>
+                <p class="text-xs text-gray-600">SISTEM INFORMASI GEDUNG DAN RUANG</p>
+                <p class="text-xs text-gray-600">BERBASIS JADWAL KELAS</p>
+            </div>
+        </div>
+        <nav class="flex space-x-6 text-gray-600 text-sm font-semibold">
+            <a href="#" class="hover:text-purple-700">Beranda</a>
+            <a href="#" class="hover:text-purple-700">Jadwal</a>
+            <a href="#" class="hover:text-purple-700 text-purple-700">Ruangan</a>
+            <a href="#" class="hover:text-purple-700">Ganti Ruang</a>
+        </nav>
+        <button class="bg-purple-700 text-white px-6 py-2 rounded-md hover:bg-purple-800 transition duration-300">Login</button>
+    </header>
+
+    <main class="flex-grow p-8 flex">
+        <div class="container mx-auto bg-white rounded-lg shadow-lg p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h1 class="text-xl font-bold text-gray-800">Ruang Kelas - Kampus E</h1>
+                <p class="text-sm text-gray-600">Sabtu, 15 Mei 2025<br>Jam: 20 : 42</p>
+            </div>
+
+            <div class="flex space-x-6">
+                <aside class="w-64 flex-shrink-0">
+                    <div class="bg-white border border-gray-300 rounded-lg p-4 mb-6">
+                        <h2 class="font-semibold text-gray-800 mb-3">Pilih Gedung :</h2>
+                        <div id="gedung-buttons" class="space-y-2">
+                            <button data-gedung="1" class="w-full text-left px-4 py-2 rounded-md bg-purple-700 text-white font-medium shadow">Gedung 1</button>
+                            <button data-gedung="2" class="w-full text-left px-4 py-2 rounded-md bg-gray-200 text-gray-700 hover:bg-gray-300 transition duration-200">Gedung 2</button>
+                            <button data-gedung="3" class="w-full text-left px-4 py-2 rounded-md bg-gray-200 text-gray-700 hover:bg-gray-300 transition duration-200">Gedung 3</button>
+                            <button data-gedung="4" class="w-full text-left px-4 py-2 rounded-md bg-gray-200 text-gray-700 hover:bg-gray-300 transition duration-200">Gedung 4</button>
+                            <button data-gedung="5" class="w-full text-left px-4 py-2 rounded-md bg-gray-200 text-gray-700 hover:bg-gray-300 transition duration-200">Gedung 5</button>
+                        </div>
+                    </div>
+
+                    <div class="bg-white border border-gray-300 rounded-lg p-4">
+                        <h2 class="font-semibold text-gray-800 mb-3">Waktu :</h2>
+                        <div class="space-y-3">
+                            <div>
+                                <label for="tanggal" class="block text-sm text-gray-700 mb-1">Tanggal :</label>
+                                <input type="date" id="tanggal" class="w-full p-2 border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500">
+                            </div>
+                            <div>
+                                <label for="hari" class="block text-sm text-gray-700 mb-1">Hari :</label>
+                                <input type="text" id="hari" class="w-full p-2 border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500" readonly>
+                            </div>
+                            <div>
+                                <label for="jam" class="block text-sm text-gray-700 mb-1">Jam :</label>
+                                <input type="time" id="jam" class="w-full p-2 border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500">
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+
+                <section class="flex-grow">
+                    <div id="lantai-buttons" class="flex space-x-2 mb-4">
+                        <button data-lantai="1" class="px-6 py-2 rounded-t-md bg-purple-700 text-white font-medium">Lantai 1</button>
+                        <button data-lantai="2" class="px-6 py-2 rounded-t-md bg-gray-200 text-gray-700 hover:bg-gray-300 transition duration-200">Lantai 2</button>
+                        <button data-lantai="3" class="px-6 py-2 rounded-t-md bg-gray-200 text-gray-700 hover:bg-gray-300 transition duration-200">Lantai 3</button>
+                        <button data-lantai="4" class="px-6 py-2 rounded-t-md bg-gray-200 text-gray-700 hover:bg-gray-300 transition duration-200">Lantai 4</button>
+                    </div>
+
+                    <div class="border border-gray-300 rounded-lg overflow-hidden">
+                        <div class="grid grid-cols-10 text-center text-sm font-semibold text-gray-700 bg-gray-100 border-b border-gray-300">
+                            <div class="p-3 border-r border-gray-300">R/W</div>
+                            <div class="p-3 border-r border-gray-300">Jam-1</div>
+                            <div class="p-3 border-r border-gray-300">Jam-2</div>
+                            <div class="p-3 border-r border-gray-300">Jam-3</div>
+                            <div class="p-3 border-r border-gray-300">Jam-4</div>
+                            <div class="p-3 border-r border-gray-300">Jam-5</div>
+                            <div class="p-3 border-r border-gray-300">Jam-6</div>
+                            <div class="p-3 border-r border-gray-300">Jam-7</div>
+                            <div class="p-3 border-r border-gray-300">Jam-8</div>
+                            <div class="p-3">Jam-9</div>
+                            </div>
+
+                        <div id="room-schedule-body">
+                            </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-purple-700 text-white p-6 text-sm">
+        <div class="container mx-auto flex items-center justify-between">
+            <div class="flex items-center">
+                <img src="https://via.placeholder.com/30x30?text=S" alt="SIGARA Footer Logo" class="h-8 mr-2">
+                <div>
+                    <p class="font-bold">SIGARA</p>
+                    <p class="text-xs">SISTEM INFORMASI GEDUNG DAN RUANG</p>
+                    <p class="text-xs">BERBASIS JADWAL KELAS</p>
+                </div>
+            </div>
+            <div>
+                <p>Alamat : Jl. Akses Kelapa Dua Kelapa Dua, Cimanggis</p>
+                <p>Telepon : 8719525, 8710561, 8727541</p>
+                <p>Faks : 8710561</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- 1. Data Dummy (Simulasi dari Database/API) ---
+        // Ini adalah contoh struktur data. Dalam aplikasi nyata, ini akan datang dari backend.
+        // Format: data[gedung][lantai][nomor_ruangan][jam] = status
+        const roomData = {
+            '1': { // Gedung 1
+                '1': { // Lantai 1
+                    'E111': ['Kosong', 'Isi', 'Isi', 'Isi', 'Isi', 'Isi', 'Isi', 'Isi', 'Isi'],
+                    'E112': ['Isi', 'Kosong', 'Isi', 'Isi', 'Isi', 'Isi', 'Isi', 'Isi', 'Isi'],
+                    'E113': ['Isi', 'Isi', 'Kosong', 'Isi', 'Isi', 'Isi', 'Isi', 'Isi', 'Isi'],
+                    'E114': ['Isi', 'Isi', 'Isi', 'Kosong', 'Isi', 'Isi', 'Isi', 'Isi', 'Isi'],
+                    'E115': ['Isi', 'Isi', 'Isi', 'Isi', 'Kosong', 'Isi', 'Isi', 'Isi', 'Isi'],
+                    'E116': ['Isi', 'Isi', 'Isi', 'Isi', 'Isi', 'Kosong', 'Isi', 'Isi', 'Isi'],
+                    'E117': ['Isi', 'Isi', 'Isi', 'Isi', 'Isi', 'Isi', 'Kosong', 'Isi', 'Isi'],
+                    'E118': ['Isi', 'Isi', 'Isi', 'Isi', 'Isi', 'Isi', 'Isi', 'Kosong', 'Isi'],
+                    'E119': ['Isi', 'Isi', 'Isi', 'Isi', 'Isi', 'Isi', 'Isi', 'Isi', 'Kosong'],
+                    'E120': ['Kosong', 'Isi', 'Isi', 'Isi', 'Isi', 'Isi', 'Isi', 'Isi', 'Isi'], // Contoh ruangan lain
+                    'E121': ['Isi', 'Kosong', 'Isi', 'Isi', 'Isi', 'Isi', 'Isi', 'Isi', 'Isi'],
+                },
+                '2': { // Lantai 2
+                    'E201': ['Isi', 'Isi', 'Kosong', 'Isi', 'Isi', 'Isi', 'Isi', 'Isi', 'Isi'],
+                    'E202': ['Kosong', 'Isi', 'Isi', 'Isi', 'Kosong', 'Isi', 'Isi', 'Isi', 'Isi'],
+                    'E203': ['Isi', 'Isi', 'Isi', 'Isi', 'Isi', 'Kosong', 'Isi', 'Isi', 'Isi'],
+                },
+                '3': { // Lantai 3
+                    'E301': ['Isi', 'Isi', 'Isi', 'Isi', 'Isi', 'Isi', 'Isi', 'Kosong', 'Isi'],
+                    'E302': ['Isi', 'Isi', 'Kosong', 'Isi', 'Isi', 'Isi', 'Isi', 'Isi', 'Isi'],
+                },
+                '4': { // Lantai 4
+                    'E401': ['Kosong', 'Isi', 'Isi', 'Isi', 'Isi', 'Isi', 'Isi', 'Isi', 'Isi'],
+                }
+            },
+            '2': { // Gedung 2 (Contoh data berbeda)
+                '1': {
+                    'F101': ['Isi', 'Kosong', 'Isi', 'Isi', 'Isi', 'Isi', 'Isi', 'Isi', 'Isi'],
+                    'F102': ['Isi', 'Isi', 'Isi', 'Isi', 'Isi', 'Kosong', 'Isi', 'Isi', 'Isi'],
+                },
+                '2': {
+                    'F201': ['Kosong', 'Isi', 'Isi', 'Isi', 'Kosong', 'Isi', 'Isi', 'Isi', 'Isi'],
+                }
+            }
+            // Tambahkan data untuk Gedung 3, 4, 5 dan lantai lainnya sesuai kebutuhan Anda
+        };
+
+        // --- 2. State Aplikasi (Gedung, Lantai, Tanggal, Hari, Jam yang sedang aktif) ---
+        let currentGedung = '1'; // Default
+        let currentLantai = '1'; // Default
+        let currentDate = new Date().toISOString().split('T')[0]; // Current date in YYYY-MM-DD format
+        let currentTime = new Date().toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' }); // Current time HH:MM
+
+        // --- 3. Referensi ke Elemen DOM ---
+        const gedungButtonsContainer = document.getElementById('gedung-buttons');
+        const lantaiButtonsContainer = document.getElementById('lantai-buttons');
+        const tanggalInput = document.getElementById('tanggal');
+        const hariInput = document.getElementById('hari');
+        const jamInput = document.getElementById('jam');
+        const roomScheduleBody = document.getElementById('room-schedule-body');
+        const headerTimeDisplay = document.querySelector('header + main .flex.justify-between p');
+
+        // --- 4. Fungsi Utility ---
+        function getDayName(dateString) {
+            const date = new Date(dateString);
+            const options = { weekday: 'long' };
+            return date.toLocaleDateString('id-ID', options); // 'id-ID' for Indonesian day names
+        }
+
+        function updateHeaderTime() {
+            const now = new Date();
+            const optionsDate = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const optionsTime = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
+
+            const dateStr = now.toLocaleDateString('id-ID', optionsDate);
+            const timeStr = now.toLocaleTimeString('id-ID', optionsTime);
+
+            // Update the display for the current date and time
+            // Note: The Figma image shows "Sabtu, 15 Mei 2025<br>Jam: 20 : 42" which seems static.
+            // If you want real-time, uncomment/use this.
+            // For now, I'll update the 'Waktu' section inputs based on current date/time
+            // and keep the top-right header display based on the Figma's static text.
+            // If you want top-right to be dynamic, update it here.
+            // headerTimeDisplay.innerHTML = `${dateStr}<br>Jam: ${timeStr}`;
+        }
+
+
+        // --- 5. Fungsi Utama untuk Merender Tabel Ruangan ---
+        function renderRoomSchedule() {
+            roomScheduleBody.innerHTML = ''; // Kosongkan isi tabel sebelumnya
+
+            // Ambil data untuk gedung dan lantai yang sedang aktif
+            const selectedGedungData = roomData[currentGedung];
+            if (!selectedGedungData) {
+                roomScheduleBody.innerHTML = `<div class="p-4 text-center text-gray-600">Tidak ada data ruangan untuk Gedung ${currentGedung}.</div>`;
+                return;
+            }
+
+            const selectedLantaiData = selectedGedungData[currentLantai];
+            if (!selectedLantaiData) {
+                roomScheduleBody.innerHTML = `<div class="p-4 text-center text-gray-600">Tidak ada data ruangan untuk Lantai ${currentLantai} di Gedung ${currentGedung}.</div>`;
+                return;
+            }
+
+            // Iterasi melalui setiap ruangan di lantai yang dipilih
+            for (const roomNumber in selectedLantaiData) {
+                const schedule = selectedLantaiData[roomNumber]; // Array status 'Isi'/'Kosong'
+                const row = document.createElement('div');
+                row.className = 'grid grid-cols-10 text-center text-sm border-b border-gray-200 last:border-b-0';
+
+                // Kolom Nama Ruangan
+                const roomNameCell = document.createElement('div');
+                roomNameCell.className = 'p-3 border-r border-gray-200 font-medium text-gray-800 bg-gray-50';
+                roomNameCell.textContent = roomNumber;
+                row.appendChild(roomNameCell);
+
+                // Kolom Status Jam
+                schedule.forEach(status => {
+                    const statusCell = document.createElement('div');
+                    statusCell.className = 'p-3 border-r border-gray-200';
+                    if (status === 'Kosong') {
+                        statusCell.classList.add('bg-red-100', 'text-red-700', 'font-semibold');
+                    }
+                    statusCell.textContent = status;
+                    row.appendChild(statusCell);
+                });
+                roomScheduleBody.appendChild(row);
+            }
+        }
+
+        // --- 6. Fungsi untuk Mengupdate Tampilan Tombol Aktif ---
+        function updateActiveButton(container, activeValue, dataAttribute) {
+            Array.from(container.children).forEach(button => {
+                if (button.dataset[dataAttribute] === activeValue) {
+                    button.classList.remove('bg-gray-200', 'text-gray-700', 'hover:bg-gray-300');
+                    button.classList.add('bg-purple-700', 'text-white', 'shadow');
+                } else {
+                    button.classList.remove('bg-purple-700', 'text-white', 'shadow');
+                    button.classList.add('bg-gray-200', 'text-gray-700', 'hover:bg-gray-300');
+                }
+            });
+        }
+
+        // --- 7. Event Listeners ---
+
+        // Event Listener untuk tombol Gedung
+        gedungButtonsContainer.addEventListener('click', (event) => {
+            const clickedButton = event.target.closest('button');
+            if (clickedButton && clickedButton.dataset.gedung) {
+                currentGedung = clickedButton.dataset.gedung;
+                // Saat gedung berubah, reset lantai ke 1 (atau lantai pertama yang tersedia untuk gedung tersebut)
+                const firstLantaiForGedung = Object.keys(roomData[currentGedung] || {})[0] || '1';
+                currentLantai = firstLantaiForGedung;
+
+                updateActiveButton(gedungButtonsContainer, currentGedung, 'gedung');
+                // Panggil render schedule untuk lantai pertama di gedung baru
+                renderRoomSchedule();
+                // Perbarui juga tampilan tombol lantai agar lantai 1 (atau yang pertama) aktif
+                updateActiveButton(lantaiButtonsContainer, currentLantai, 'lantai');
+            }
+        });
+
+        // Event Listener untuk tombol Lantai
+        lantaiButtonsContainer.addEventListener('click', (event) => {
+            const clickedButton = event.target.closest('button');
+            if (clickedButton && clickedButton.dataset.lantai) {
+                currentLantai = clickedButton.dataset.lantai;
+                updateActiveButton(lantaiButtonsContainer, currentLantai, 'lantai');
+                renderRoomSchedule(); // Render ulang schedule dengan lantai baru
+            }
+        });
+
+        // Event Listener untuk input Tanggal
+        tanggalInput.addEventListener('change', () => {
+            currentDate = tanggalInput.value;
+            hariInput.value = getDayName(currentDate); // Update Hari secara otomatis
+            // Anda bisa tambahkan logika di sini jika status ruangan berubah berdasarkan tanggal
+            // Misalnya, memanggil API backend dengan tanggal ini.
+            // renderRoomSchedule(); // Uncomment jika status ruangan dinamis per tanggal
+        });
+
+        // Event Listener untuk input Jam
+        jamInput.addEventListener('change', () => {
+            currentTime = jamInput.value;
+            // Anda bisa tambahkan logika di sini jika status ruangan berubah berdasarkan jam
+            // Misalnya, menyorot kolom jam yang sesuai, atau memanggil API backend.
+            // renderRoomSchedule(); // Uncomment jika status ruangan dinamis per jam
+        });
+
+        // --- 8. Inisialisasi Saat Halaman Dimuat ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set input tanggal dan jam ke waktu saat ini
+            tanggalInput.value = currentDate;
+            hariInput.value = getDayName(currentDate);
+            jamInput.value = currentTime.substring(0, 5); // Format HH:MM
+
+            // Set tombol aktif awal
+            updateActiveButton(gedungButtonsContainer, currentGedung, 'gedung');
+            updateActiveButton(lantaiButtonsContainer, currentLantai, 'lantai');
+
+            // Render schedule awal
+            renderRoomSchedule();
+
+            // Update header time every minute (optional, if you want real-time clock)
+            // setInterval(updateHeaderTime, 60000);
+        });
+    </script>
+
 </body>
 </html>
