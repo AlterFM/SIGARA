@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIGARA - Admin Dashboard</title>
+    <link rel="stylesheet" href="../dist/output.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Custom styles for modal overlay */
+        .modal-overlay {
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px); /* Optional: adds a blur effect */
+        }
+        /* Optional: Add custom styles if the default select arrow is not appealing */
+        /* .status-dropdown {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 1rem 0.75rem;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        } */
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+
+    <header class="bg-white shadow-md p-4 flex items-center justify-between">
+        <div class="flex items-center">
+            <img src="https://via.placeholder.com/40x40?text=SIGARA" alt="SIGARA Logo" class="h-10 mr-3">
+            <div class="text-sm">
+                <p class="font-bold text-gray-800">SIGARA</p>
+                <p class="text-xs text-gray-600">SISTEM INFORMASI GEDUNG DAN RUANG</p>
+                <p class="text-xs text-gray-600">BERBASIS JADWAL KELAS</p>
+            </div>
+        </div>
+        <nav class="flex space-x-6 text-gray-600 text-sm font-semibold">
+            <a href="#" class="hover:text-purple-700">Beranda</a>
+            <a href="#" class="hover:text-purple-700">Jadwal</a>
+            <a href="#" class="hover:text-purple-700">Ruangan</a>
+            <a href="#" class="hover:text-purple-700 text-purple-700">Administrasi</a>
+        </nav>
+        <button class="bg-purple-700 text-white px-6 py-2 rounded-md hover:bg-purple-800 transition duration-300 flex items-center">
+            <i class="fas fa-user-shield mr-2"></i>Admin
+        </button>
+    </header>
+
+    <main class="flex-grow p-8">
+        <div class="container mx-auto bg-white rounded-lg shadow-lg p-8 max-w-7xl"> 
+
+            <section class="mb-10">
+                <h1 class="text-2xl font-bold text-gray-800 mb-6">Daftar Formulir Ganti Ruang</h1>
+
+                <div class="mb-4 flex justify-between items-center">
+                    <input type="text" id="request-search-input" placeholder="Cari Tanggal, Nama, Mata Kuliah..." class="p-2 border border-gray-300 rounded-md text-sm w-80">
+                </div>
+
+                <div class="overflow-x-auto overflow-y-auto max-h-96 border border-gray-200 rounded-lg"> 
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50 sticky top-0 z-10"> 
+                            <tr>
+                                <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tanggal</th>
+                                <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nama</th>
+                                <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Dosen Pengganti</th>
+                                <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Mata Kuliah</th>
+                                <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Kelas</th>
+                                <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ruang</th>
+                                <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Waktu</th>
+                                <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Alasan</th>
+                                <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tindakan</th>
+                            </tr>
+                        </thead>
+                        <tbody id="room-change-requests-body" class="bg-white divide-y divide-gray-200">
+                            </tbody>
+                    </table>
+                </div>
+                <div class="px-4 py-2 bg-gray-50 text-right text-xs text-gray-500 rounded-b-lg border-t border-gray-200">
+                    <span id="room-request-pagination-info">1-10 of 87</span>
+                    <span class="ml-4">
+                        <a href="#" class="text-purple-600 hover:text-purple-800" id="room-request-prev">Previous</a>
+                        <span class="mx-2" id="room-request-current-page">1</span>
+                        <a href="#" class="text-purple-600 hover:text-purple-800" id="room-request-next">Next</a>
+                    </span>
+                </div>
+            </section>
+
+            <section>
+                <h1 class="text-2xl font-bold text-gray-800 mb-6 flex justify-between items-center">
+                    Jadwal Kuliah
+                    <div class="flex items-center space-x-4">
+                        <label for="schedule-search-input" class="text-base font-semibold text-gray-700">Cari Jadwal :</label>
+                        <input type="text" id="schedule-search-input" placeholder="Kelas, Ruang, Dosen, dll..." class="p-2 border border-gray-300 rounded-md text-sm w-64">
+                        <button id="add-schedule-btn" class="bg-purple-700 text-white px-4 py-2 rounded-md hover:bg-purple-800 transition duration-300">
+                            <i class="fas fa-plus mr-2"></i>Tambah Jadwal
+                        </button>
+                    </div>
+                </h1>
+
+                <div class="overflow-x-auto overflow-y-auto max-h-96 border border-gray-200 rounded-lg">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50 sticky top-0 z-10"> 
+                            <tr>
+                                <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Kelas</th>
+                                <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Hari</th>
+                                <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Mata Kuliah</th>
+                                <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Waktu</th>
+                                <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ruang</th>
+                                <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Dosen</th>
+                                <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="course-schedule-body" class="bg-white divide-y divide-gray-200">
+                            </tbody>
+                    </table>
+                </div>
+                <div class="px-4 py-2 bg-gray-50 text-right text-xs text-gray-500 rounded-b-lg border-t border-gray-200">
+                    <span id="course-schedule-pagination-info">1-10 of 87</span>
+                    <span class="ml-4">
+                        <a href="#" class="text-purple-600 hover:text-purple-800" id="course-schedule-prev">Previous</a>
+                        <span class="mx-2" id="course-schedule-current-page">1</span>
+                        <a href="#" class="text-purple-600 hover:text-purple-800" id="course-schedule-next">Next</a>
+                    </span>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="bg-purple-700 text-white p-6 text-sm">
+        <div class="container mx-auto flex items-center justify-between">
+            <div class="flex items-center">
+                <img src="https://via.placeholder.com/30x30?text=S" alt="SIGARA Footer Logo" class="h-8 mr-2">
+                <div>
+                    <p class="font-bold">SIGARA</p>
+                    <p class="text-xs">SISTEM INFORMASI GEDUNG DAN RUANG</p>
+                    <p class="text-xs">BERBASIS JADWAL KELAS</p>
+                </div>
+            </div>
+            <div>
+                <p>Alamat : Jl. Akses Kelapa Dua Kelapa Dua, Cimanggis</p>
+                <p>Telepon : 8719525, 8710561, 8727541</p>
+                <p>Faks : 8710561</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="edit-schedule-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50 modal-overlay">
+        <div class="bg-white p-6 rounded-lg shadow-xl w-full max-w-md">
+            <h2 id="modal-title" class="text-xl font-bold mb-4">Edit Jadwal Kuliah</h2> 
+            <form id="edit-schedule-form">
+                <input type="hidden" id="edit-schedule-id">
+                <div class="mb-4">
+                    <label for="edit-kelas" class="block text-gray-700 text-sm font-bold mb-2">Kelas:</label>
+                    <input type="text" id="edit-kelas" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                </div>
+                <div class="mb-4">
+                    <label for="edit-hari" class="block text-gray-700 text-sm font-bold mb-2">Hari:</label>
+                    <input type="text" id="edit-hari" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                </div>
+                <div class="mb-4">
+                    <label for="edit-mata-kuliah" class="block text-gray-700 text-sm font-bold mb-2">Mata Kuliah:</label>
+                    <input type="text" id="edit-mata-kuliah" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                </div>
+                <div class="mb-4">
+                    <label for="edit-waktu" class="block text-gray-700 text-sm font-bold mb-2">Waktu:</label>
+                    <input type="text" id="edit-waktu" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                </div>
+                <div class="mb-4">
+                    <label for="edit-ruang" class="block text-gray-700 text-sm font-bold mb-2">Ruang:</label>
+                    <input type="text" id="edit-ruang" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                </div>
+                <div class="mb-6">
+                    <label for="edit-dosen" class="block text-gray-700 text-sm font-bold mb-2">Dosen:</label>
+                    <input type="text" id="edit-dosen" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                </div>
+                <div class="flex items-center justify-between">
+                    <button type="submit" id="submit-schedule-btn" class="bg-purple-700 hover:bg-purple-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Simpan Perubahan</button>
+                    <button type="button" id="cancel-edit-btn" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Batal</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="./DashboardAdmin.js"></script>
+
+</body>
+</html>
