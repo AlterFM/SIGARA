@@ -1,9 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./*.html", // Memindai file HTML di root (misal index.html)
-    "./pages/**/*.{html,js,ts,jsx,tsx}", // Memindai file HTML dan JS di folder 'pages'
-    "./_includes/**/*.html", // MEMASTIKAN FILE DI FOLDER _INCLUDES DIPINDAI
+    "./*.html", 
+    "./pages/**/*.{html,js,ts,jsx,tsx}",
+    "./src/**/*.{html,js,ts,jsx,tsx}", 
+    "./_includes/**/*.html", 
   ],
   theme: {
     extend: {

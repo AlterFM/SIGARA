@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             console.error('Error loading header:', error);
         }
     }
+    
 
     // Load Footer
     const footerPlaceholder = document.getElementById('footer-placeholder');
