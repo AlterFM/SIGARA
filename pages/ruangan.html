@@ -5,26 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SIGARA - Ruang Kelas</title>
     <link href="../dist/output.css" rel="stylesheet" />
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-    </style>
 </head>
 <body class="bg-gray-100 min-h-screen flex flex-col">
-
-    <header class="bg-white shadow-md p-4 flex items-center justify-between">
-        <div class="flex items-center">
-            <img src="../src/img/LOGO WEB.png" alt="SIGARA Logo" class="h-10 mr-3">
-        </div>
-        <nav class="flex space-x-6 text-gray-600 text-sm font-semibold">
-            <a href="../index.html" class="hover:text-purple-700">Beranda</a>
-            <a href="#" class="hover:text-purple-700">Jadwal</a>
-            <a href="#" class="hover:text-purple-700 text-purple-700">Ruangan</a>
-            <a href="#" class="hover:text-purple-700">Ganti Ruang</a>
-        </nav>
-        <button class="bg-purple-700 text-white px-6 py-2 rounded-md hover:bg-purple-800 transition duration-300">Login</button>
-    </header>
+    <!-- Header Placeholder -->
+    <div id="header-placeholder" data-include-path="../_includes/_header.html"></div>
 
     <main class="flex-grow p-8 flex">
         <div class="container mx-auto bg-white rounded-lg shadow-lg p-6">
@@ -95,23 +79,9 @@
         </div>
     </main>
 
-    <footer class="bg-purple-700 text-white p-6 text-sm">
-        <div class="container mx-auto flex items-center justify-between">
-            <div class="flex items-center">
-                <img src="https://via.placeholder.com/30x30?text=S" alt="SIGARA Footer Logo" class="h-8 mr-2">
-                <div>
-                    <p class="font-bold">SIGARA</p>
-                    <p class="text-xs">SISTEM INFORMASI GEDUNG DAN RUANG</p>
-                    <p class="text-xs">BERBASIS JADWAL KELAS</p>
-                </div>
-            </div>
-            <div>
-                <p>Alamat : Jl. Akses Kelapa Dua Kelapa Dua, Cimanggis</p>
-                <p>Telepon : 8719525, 8710561, 8727541</p>
-                <p>Faks : 8710561</p>
-            </div>
-        </div>
-    </footer>
-    <script src="ruangan.js" defer></script>
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder" data-include-path="../_includes/_footer.html"></div>
+    <script src="../src/js/loadIncludes.js" defer></script>
+    <script src="../src/js/ruangan.js" defer></script>
 </body>
 </html>
