@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIGARA Register</title>
+    <link rel="stylesheet" href="style-register.css">
+</head>
+<body>
+    <div class="register-container">
+        <div class="logo">
+            <img src="SIGARA.png" alt="SIGARA Logo">
+        </div>
+        <div class="register-form">
+            <h2>Register</h2>
+            <form>
+                <label for="nama">Nama</label>
+                <input type="text" id="nama" name="nama" placeholder="">
+
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="">
+
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="">
+
+                <label for="no_telp">No Telp</label>
+                <input type="text" id="no_telp" name="no_telp" placeholder="">
+
+                <div class="radio-group">
+                    <input type="radio" id="dosen" name="user_type" value="dosen">
+                    <label for="dosen">Dosen</label>
+
+                    <input type="radio" id="mahasiswa" name="user_type" value="mahasiswa">
+                    <label for="mahasiswa">Mahasiswa</label>
+                </div>
+
+                <button type="submit" class="register-button">Register</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
