@@ -1,5 +1,3 @@
-// src/js/DashboardAdmin.js
-
 // --- 1. Data Dummy (Simulasi dari Database/API) ---
 // Data dummy untuk formulir ganti ruang
 const roomChangeRequests = [
