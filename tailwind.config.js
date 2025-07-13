@@ -1,32 +1,34 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./*.html", 
-    "./pages/**/*.{html,js,ts,jsx,tsx}",
-    "./src/**/*.{html,js,ts,jsx,tsx}", 
-    "./_includes/**/*.html", 
+    "./*.php", 
+    "./pages/**/*.php", 
+    "./src/**/*.{php,html,js,ts,jsx,tsx}", 
+    "./_includes/**/*.php", 
   ],
   theme: {
     extend: {
       fontFamily: {
-        // Menambahkan font Poppins
         sans: ['Poppins', 'sans-serif'],
       },
       colors: {
-        // Menambahkan warna kustom Anda
-        'purple': { // Mengganti default purple Tailwind jika Anda ingin warna ini menjadi 'purple' utama
-          '50': '#F8F5FF', // bg-card-purple
+        // Definisikan ulang warna Anda sesuai kebutuhan
+        // Pastikan nama kelas Tailwind Anda (misalnya bg-custom-purple) sesuai dengan definisi di sini
+        // Jika Anda ingin menggunakan 'purple' sebagai nama umum untuk berbagai shades
+        'purple': {
+          '50': '#F8F5FF', // card-purple
           '100': '#F0EAFE',
           '200': '#DCD0F2', // border-card-purple
           '300': '#C8B6E7',
           '400': '#B49CE0',
           '500': '#A082D9',
           '600': '#8C68D2',
-          '700': '#5F27CD', // custom-purple, bg-custom-purple, border-custom-purple
+          '700': '#5F27CD', // custom-purple
           '800': '#4A1F9C',
           '900': '#35166B',
         },
-        'custom-purple': '#5F27CD', // Jika Anda tetap ingin nama custom-purple
+        // Jika Anda masih ingin nama spesifik seperti ini, ini akan dibuat sebagai utility class terpisah
+        'custom-purple': '#5F27CD', 
         'card-purple': '#F8F5FF',
         'border-card-purple': '#DCD0F2',
         'icon-purple': '#EBE1FA',
@@ -47,6 +49,6 @@ module.exports = {
     },
   },
   plugins: [
-    require('@tailwindcss/forms'), // Pastikan plugin forms masih ada
+    require('@tailwindcss/forms'),
   ],
 }

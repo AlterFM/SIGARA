@@ -1,6 +1,6 @@
 <?php
 if (session_status() === PHP_SESSION_NONE) {
-    session_start(); // Pastikan session dimulai
+    session_start(); 
 }
 $isLoggedIn = isset($_SESSION['username']);
 $namauser = $isLoggedIn ? $_SESSION['nama_user'] : '';

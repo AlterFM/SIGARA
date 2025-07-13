@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -6,10 +9,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SIGARA - Ruang Kelas</title>
     <link href="../dist/output.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body class="bg-gray-100 min-h-screen flex flex-col">
     <!-- Header Placeholder -->
-    <div id="header-placeholder" data-include-path="../_includes/_header.php"></div>
+    <!-- <pre><?php print_r($_SESSION); ?></pre> -->
+    <?php include __DIR__ . '/../_includes/_header.php'; ?>
 
     <main class="flex-grow p-8 flex">
         <div class="container mx-auto bg-white rounded-lg shadow-lg p-6">

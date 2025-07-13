@@ -8,11 +8,10 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SIGARA - Sistem Informasi Ganti Ruang & Jadwal Akademik</title>
     <link href="/SIGARA/dist/output.css" rel="stylesheet" /> 
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body class="bg-white font-sans">
-    <pre><?php print_r($_SESSION); ?></pre>
+    <!-- <pre><?php print_r($_SESSION); ?></pre> -->
     <?php include "_includes/_header.php"; ?>
     <main>
         <!-- Konten Hero Section -->
