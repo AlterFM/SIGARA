@@ -1,4 +1,5 @@
 <?php
+// File: SIGARA/ruangan.php
 session_start();
 ?>
 
@@ -23,6 +24,19 @@ session_start();
             <div class="flex space-x-6">
                 <aside class="w-64 flex-shrink-0">
                     <div class="bg-white border border-gray-300 rounded-lg p-4 mb-6">
+                        <h2 class="font-semibold text-gray-800 mb-3">Pilih Hari :</h2>
+                        <select id="hari-select" class="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            <option value="Senin">Senin</option>
+                            <option value="Selasa">Selasa</option>
+                            <option value="Rabu">Rabu</option>
+                            <option value="Kamis">Kamis</option>
+                            <option value="Jum'at">Jum'at</option>
+                            <option value="Sabtu">Sabtu</option>
+                            <option value="Minggu">Minggu</option>
+                        </select>
+                    </div>
+
+                    <div class="bg-white border border-gray-300 rounded-lg p-4 mb-6">
                         <h2 class="font-semibold text-gray-800 mb-3">Pilih Gedung :</h2>
                         <div id="gedung-buttons" class="space-y-2">
                             <button data-gedung="1" class="w-full text-left px-4 py-2 rounded-md bg-purple-700 text-white font-medium shadow">Gedung 1</button>
@@ -32,20 +46,7 @@ session_start();
                             <button data-gedung="5" class="w-full text-left px-4 py-2 rounded-md bg-gray-200 text-gray-700 hover:bg-gray-300 transition duration-200">Gedung 5</button>
                         </div>
                     </div>
-
-                    </aside>
-                <div class="mb-4">
-                    <label for="hari-select" class="block text-sm font-medium text-gray-700 mb-1">Pilih Hari:</label>
-                    <select id="hari-select" class="block w-48 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
-                        <option value="Senin">Senin</option>
-                        <option value="Selasa">Selasa</option>
-                        <option value="Rabu">Rabu</option>
-                        <option value="Kamis">Kamis</option>
-                        <option value="Jum'at">Jum'at</option>
-                        <option value="Sabtu">Sabtu</option>
-                    </select>
-                </div>
-
+                </aside>
 
                 <section class="flex-grow">
                     <div id="lantai-buttons" class="flex space-x-2 mb-4">
