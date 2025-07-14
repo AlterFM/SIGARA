@@ -1,136 +1,19 @@
-// --- 1. Data Dummy (Simulasi dari Database/API) ---
-// Data dummy untuk formulir ganti ruang
-const roomChangeRequests = [
-    {
-        id: 1,
-        tanggal: '5/19/25',
-        nama: 'Daffa Dio',
-        namaDosenPengganti: '',
-        mataKuliah: 'Konsep Data Mining',
-        kelas: '3A13',
-        ruang: 'E112',
-        waktu: '1/2',
-        alasan: 'Ruangan terlalu panas',
-        status: 'Diproses' // Initial status
-    },
-    {
-        id: 2,
-        tanggal: '5/20/25',
-        nama: 'Ralfi',
-        namaDosenPengganti: 'ANNAUCITA OKTIANDA RAHMA',
-        mataKuliah: 'Algoritma & Pemrograman',
-        kelas: '3A14',
-        ruang: 'E113',
-        waktu: '3/4',
-        alasan: 'Ruangan terlalu kecil',
-        status: 'Disetujui'
-    },
-    {
-        id: 3,
-        tanggal: '5/21/25',
-        nama: 'Rifki',
-        namaDosenPengganti: 'MUHAMMAD NAJIB RAMADHAN',
-        mataKuliah: 'Algoritma & Pemrograman',
-        kelas: '3A15',
-        ruang: 'E114',
-        waktu: '9/10',
-        alasan: 'AC mati',
-        status: 'Ditolak'
-    },
-    {
-        id: 4,
-        tanggal: '5/22/25',
-        nama: 'Yoga',
-        namaDosenPengganti: '',
-        mataKuliah: 'Algoritma & Pemrograman',
-        kelas: '3A16',
-        ruang: 'E115',
-        waktu: '5/6',
-        alasan: 'Ruangan terlalu panas',
-        status: 'Diproses'
-    },
-    {
-        id: 5,
-        tanggal: '5/23/25',
-        nama: 'Ana',
-        namaDosenPengganti: 'ETY SUTANTY',
-        mataKuliah: 'Algoritma & Pemrograman',
-        kelas: '3A17',
-        ruang: 'E116',
-        waktu: '5/6',
-        alasan: 'Ruangan terlalu panas',
-        status: 'Diproses'
-    },
-    {
-        id: 6,
-        tanggal: '5/24/25',
-        nama: 'Nabil',
-        namaDosenPengganti: 'JONNIAN',
-        mataKuliah: 'Algoritma & Dasar 2A',
-        kelas: '3A18',
-        ruang: 'E117',
-        waktu: '4/5',
-        alasan: 'Ruangan terlalu panas',
-        status: 'Diproses'
-    },
-    {
-        id: 7,
-        tanggal: '5/25/25',
-        nama: 'Dian',
-        namaDosenPengganti: 'DYAN PRAMITA',
-        mataKuliah: 'Algoritma & Dasar 2A',
-        kelas: '3A19',
-        ruang: 'E118',
-        waktu: '5/6',
-        alasan: 'Ruangan terlalu panas',
-        status: 'Diproses'
-    },
-    {
-        id: 8,
-        tanggal: '5/26/25',
-        nama: 'Mia',
-        namaDosenPengganti: 'HELENAWATY',
-        mataKuliah: 'Pengembangan Aplikasi Pendidikan',
-        kelas: '3A20',
-        ruang: 'E119',
-        waktu: '7/8',
-        alasan: 'Ruangan terlalu panas',
-        status: 'Diproses'
-    },
-    {
-        id: 9,
-        tanggal: '5/27/25',
-        nama: 'Abbas',
-        namaDosenPengganti: 'ERLINA',
-        mataKuliah: 'Konsep Teknologi Informasi B',
-        kelas: '3A11',
-        ruang: 'E221',
-        waktu: '1/2',
-        alasan: 'Ruangan terlalu panas',
-        status: 'Diproses'
-    },
-    // Tambahkan lebih banyak data dummy jika diperlukan untuk paginasi
-    { id: 10, tanggal: '5/28/25', nama: 'Zahra', namaDosenPengganti: '', mataKuliah: 'Database Systems', kelas: '4B01', ruang: 'F101', waktu: '1/2', alasan: 'Kapasitas kurang', status: 'Diproses' },
-    { id: 11, tanggal: '5/29/25', nama: 'Budi', namaDosenPengganti: 'SUTANTO', mataKuliah: 'Web Programming', kelas: '5C02', ruang: 'G201', waktu: '3/4', alasan: 'Pencahayaan kurang', status: 'Disetujui' }
-];
+// File: src/js/DashboardAdmin.js
 
-// Data dummy untuk jadwal kuliah
-const courseSchedules = [
-    { id: 101, kelas: '1IA01', hari: 'Senin', mataKuliah: 'Konsep Teknologi Informasi A', waktu: '2-Jan', ruang: 'G229', dosen: 'RASMADANISA SUSANNA HERAWATI' },
-    { id: 102, kelas: '1IA01', hari: 'Senin', mataKuliah: 'Konsep Teknologi Informasi 2C', waktu: '4-Mar', ruang: 'G229', dosen: 'FARIDA AMALYA' },
-    { id: 103, kelas: '1IA01', hari: 'Senin', mataKuliah: 'Pendidikan Kewarganegaraan', waktu: '7-Jun', ruang: 'G229', dosen: 'ERNI KARYATI' },
-    { id: 104, kelas: '1IA01', hari: 'Senin', mataKuliah: 'Konsep Teknologi Informasi B', waktu: '9-Aug', ruang: 'G125', dosen: 'WINARDIH' },
-    { id: 105, kelas: '1IA01', hari: 'Kamis', mataKuliah: 'Teknologi Kecerdasan Artifisial', waktu: 'U57Y', ruang: 'G125', dosen: 'TEAM TEACHING' },
-    { id: 106, kelas: '1IA01', hari: 'Kamis', mataKuliah: 'Pendidikan Agama Islam', waktu: '2-Jun', ruang: 'E221', dosen: 'APOJDIN' },
-    { id: 107, kelas: '1IA01', hari: 'Kamis', mataKuliah: 'Algoritma & Pemrograman 2A', waktu: '4-Mar', ruang: 'G231', dosen: 'ENDAH KURNIASIH' },
-    { id: 108, kelas: '1IA01', hari: 'Kamis', mataKuliah: 'Algoritma & Pemrograman 2B', waktu: '7-Jun', ruang: 'G243', dosen: 'RATIH PURWANINGTYAS' },
-    { id: 109, kelas: '1IA01', hari: 'Kamis', mataKuliah: 'Konsep Teknologi Informasi C', waktu: '10 Sep', ruang: 'G218', dosen: 'DDI. SUBIAYANTI' },
-    { id: 110, kelas: '1IA01', hari: 'Jumat', mataKuliah: 'Fisika dan Kimia Dasar 2A', waktu: '2-Jan', ruang: 'F314', dosen: 'HENING HENDRATO' },
-    { id: 111, kelas: '1IA01', hari: 'Jumat', mataKuliah: 'Matematika Dasar 3A', waktu: '4-Mar', ruang: 'E514', dosen: 'EVA ZULFA MAILIKAH' },
-    { id: 112, kelas: '1IA01', hari: 'Jumat', mataKuliah: 'Matematika Informatika 2', waktu: '8-Jul', ruang: 'F315', dosen: 'YULI FITRIANI' },
-    { id: 113, kelas: '1IA01', hari: 'Jumat', mataKuliah: 'Fisika dan Kimia Dasar 2B', waktu: '10 Sep', ruang: 'E315', dosen: 'LESTARI OCTAVIA' },
-    { id: 114, kelas: '1IA01', hari: 'Sabtu', mataKuliah: 'Praktikum Teknologi Kecerdasan Artifisial', waktu: '4-Mar', ruang: 'G316', dosen: 'TIM DOSEN' }
-];
+// --- 1. State Aplikasi ---
+const itemsPerPage = 10; // Jumlah item per halaman untuk kedua tabel
+
+// State untuk paginasi formulir ganti ruang
+let currentRoomRequestPage = 1;
+let totalRoomRequests = 0; // Total item form ganti ruang dari backend
+
+// State untuk paginasi jadwal kuliah
+let currentCourseSchedulePage = 1;
+let totalCourseSchedules = 0; // Total item jadwal dari backend
+let globalCourseSchedulesData = []; // Untuk menyimpan data jadwal yang terakhir di-fetch, berguna untuk mengisi modal edit
+
+// State untuk mode modal (add atau edit jadwal)
+let isEditMode = false;
 
 // --- 2. Referensi ke Elemen DOM ---
 const roomChangeRequestsBody = document.getElementById('room-change-requests-body');
@@ -146,104 +29,110 @@ const courseSchedulePrevBtn = document.getElementById('course-schedule-prev');
 const courseScheduleNextBtn = document.getElementById('course-schedule-next');
 const courseScheduleCurrentPageSpan = document.getElementById('course-schedule-current-page');
 
-const scheduleSearchInput = document.getElementById('schedule-search-input');
-const addScheduleBtn = document.getElementById('add-schedule-btn');
+const scheduleSearchInput = document.getElementById('schedule-search-input'); // Pencarian Jadwal
+const addScheduleBtn = document.getElementById('add-schedule-btn'); // Tombol Tambah Jadwal
 
-// Room Request Search/Filter 
-const requestSearchInput = document.getElementById('request-search-input');
+const requestSearchInput = document.getElementById('request-search-input'); // Pencarian Formulir Ganti Ruang
 
-// Edit/Add Schedule Modal Elements
+// Elemen Modal Edit/Add Jadwal (pastikan ID ini ada di DashboardAdmin.php HTML)
 const editScheduleModal = document.getElementById('edit-schedule-modal');
 const editScheduleForm = document.getElementById('edit-schedule-form');
 const cancelEditBtn = document.getElementById('cancel-edit-btn');
-const modalTitle = document.getElementById('modal-title'); // For changing modal title
-const submitScheduleBtn = document.getElementById('submit-schedule-btn'); // For changing submit button text
+const modalTitle = document.getElementById('modal-title');
+const submitScheduleBtn = document.getElementById('submit-schedule-btn');
 
 const editScheduleId = document.getElementById('edit-schedule-id');
 const editKelas = document.getElementById('edit-kelas');
 const editHari = document.getElementById('edit-hari');
-const editMataKuliah = document.getElementById('edit-mata-kuliah');
+const editMataKuliah = document.getElementById('edit-mata-kuliah'); // Pastikan ID ini ada di HTML modal
 const editWaktu = document.getElementById('edit-waktu');
 const editRuang = document.getElementById('edit-ruang');
-const editDosen = document.getElementById('edit-dosen');
+const editDosen = document.getElementById('edit-dosen'); // Pastikan ID ini ada di HTML modal
 
-// --- 3. Fungsi Utility & State untuk Paginasi ---
-const itemsPerPage = 10; // Jumlah item per halaman
-
-// State untuk paginasi formulir ganti ruang
-let currentRoomRequestPage = 1;
-let filteredRoomRequests = roomChangeRequests; // Untuk menyimpan hasil filter jika ada
-
-// State untuk paginasi jadwal kuliah
-let currentCourseSchedulePage = 1;
-let filteredCourseSchedules = courseSchedules; // Untuk menyimpan hasil filter jika ada
-
-// State for modal mode (add or edit)
-let isEditMode = false;
-
-
-// --- 4. Fungsi Render Tabel Formulir Ganti Ruang ---
-function renderRoomChangeRequests() {
+// --- 3. Fungsi untuk Fetch dan Render Tabel Formulir Ganti Ruang ---
+async function fetchAndRenderRoomChangeRequests() {
     roomChangeRequestsBody.innerHTML = ''; // Kosongkan isi tabel
 
-    const startIndex = (currentRoomRequestPage - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    const paginatedRequests = filteredRoomRequests.slice(startIndex, endIndex);
+    const searchTerm = requestSearchInput.value.toLowerCase().trim();
+    // URL API untuk mengambil semua form ganti ruang dengan paginasi dan pencarian
+    const url = `/SIGARA/php/get_all_change_requests.php?page=${currentRoomRequestPage}&limit=${itemsPerPage}&search=${encodeURIComponent(searchTerm)}`;
 
-    if (paginatedRequests.length === 0) {
-        roomChangeRequestsBody.innerHTML = `<tr><td colspan="9" class="p-4 text-center text-gray-600">Tidak ada formulir ganti ruang.</td></tr>`;
-        roomRequestPaginationInfo.textContent = '0-0 of 0';
-        roomRequestCurrentPageSpan.textContent = '0';
-        roomRequestPrevBtn.classList.add('opacity-50', 'pointer-events-none');
-        roomRequestNextBtn.classList.add('opacity-50', 'pointer-events-none');
-        return;
-    }
-    
-    paginatedRequests.forEach(request => {
-        // Determine badge/row color based on status
-        let statusBadgeClass = '';
-        switch (request.status) {
-            case 'Diproses':
-                statusBadgeClass = 'bg-yellow-100 text-yellow-800 border-yellow-300'; // Kuning untuk Diproses
-                break;
-            case 'Disetujui':
-                statusBadgeClass = 'bg-green-100 text-green-800 border-green-300'; // Hijau untuk Disetujui
-                break;
-            case 'Ditolak':
-                statusBadgeClass = 'bg-red-100 text-red-800 border-red-300'; // Merah untuk Ditolak
-                break;
-            default:
-                statusBadgeClass = 'bg-gray-100 text-gray-800 border-gray-300'; // Default
+    try {
+        const response = await fetch(url);
+        if (!response.ok) { // Cek jika respons HTTP tidak OK (misal: 403 Forbidden)
+            if (response.status === 403) {
+                 roomChangeRequestsBody.innerHTML = `<tr><td colspan="9" class="p-4 text-center text-red-600">Akses ditolak. Anda tidak memiliki izin untuk melihat data ini.</td></tr>`;
+                 totalRoomRequests = 0; // Reset total
+                 updateRoomRequestPaginationControls(); // Update paginasi untuk menampilkan 0
+                 return;
+            } else {
+                 throw new Error(`HTTP error! status: ${response.status}`);
+            }
         }
+        const data = await response.json();
 
-        const row = document.createElement('tr');
-        row.className = 'hover:bg-gray-50'; // Add hover effect to rows
-        row.innerHTML = `
-            <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-900">${request.tanggal}</td>
-            <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-900">${request.nama}</td>
-            <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-900">${request.namaDosenPengganti}</td>
-            <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-900">${request.mataKuliah}</td>
-            <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-900">${request.kelas}</td>
-            <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-900">${request.ruang}</td>
-            <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-900">${request.waktu}</td>
-            <td class="px-4 py-2 text-sm text-gray-500 max-w-[150px] truncate" title="${request.alasan}">${request.alasan}</td>
-            <td class="px-4 py-2 whitespace-nowrap text-sm font-medium">
-                <select data-id="${request.id}" class="status-dropdown block w-full py-1 px-2 border rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500 text-xs ${statusBadgeClass}">
-                    <option value="Diproses" ${request.status === 'Diproses' ? 'selected' : ''}>Diproses</option>
-                    <option value="Disetujui" ${request.status === 'Disetujui' ? 'selected' : ''}>Disetujui</option>
-                    <option value="Ditolak" ${request.status === 'Ditolak' ? 'selected' : ''}>Ditolak</option>
-                </select>
-            </td>
-        `;
-        roomChangeRequestsBody.appendChild(row);
-    });
+        if (data.status === 'error') {
+            console.error("Error fetching room change requests:", data.message);
+            roomChangeRequestsBody.innerHTML = `<tr><td colspan="9" class="p-4 text-center text-red-600">Gagal memuat formulir: ${data.message}</td></tr>`;
+            totalRoomRequests = 0;
+        } else {
+            const requestsToRender = data.requests;
+            totalRoomRequests = data.totalItems;
 
-    updateRoomRequestPaginationControls();
+            if (requestsToRender.length === 0) {
+                roomChangeRequestsBody.innerHTML = `<tr><td colspan="9" class="p-4 text-center text-gray-600">Tidak ada formulir ganti ruang yang cocok dengan pencarian.</td></tr>`;
+            } else {
+                requestsToRender.forEach(request => {
+                    let statusBadgeClass = '';
+                    switch (request.status) {
+                        case 'Diproses':
+                            statusBadgeClass = 'bg-yellow-100 text-yellow-800 border-yellow-300';
+                            break;
+                        case 'Disetujui':
+                            statusBadgeClass = 'bg-green-100 text-green-800 border-green-300';
+                            break;
+                        case 'Ditolak':
+                            statusBadgeClass = 'bg-red-100 text-red-800 border-red-300';
+                            break;
+                        default:
+                            statusBadgeClass = 'bg-gray-100 text-gray-800 border-gray-300';
+                    }
+
+                    const row = document.createElement('tr');
+                    row.className = 'hover:bg-gray-50';
+                    row.innerHTML = `
+                        <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-900">${request.tanggal}</td>
+                        <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-900">${request.nama}</td>
+                        <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-900">${request.dosen_pengampu}</td>
+                        <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-900">${request.mata_kuliah}</td>
+                        <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-900">${request.kelas}</td>
+                        <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-900">${request.ruang}</td>
+                        <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-900">${request.waktu}</td>
+                        <td class="px-4 py-2 text-sm text-gray-500 max-w-[150px] truncate" title="${request.alasan}">${request.alasan}</td>
+                        <td class="px-4 py-2 whitespace-nowrap text-sm font-medium">
+                            <select data-id="${request.id}" data-original-status="${request.status}" class="status-dropdown block w-full py-1 px-2 border rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500 text-xs ${statusBadgeClass}">
+                                <option value="Diproses" ${request.status === 'Diproses' ? 'selected' : ''}>Diproses</option>
+                                <option value="Disetujui" ${request.status === 'Disetujui' ? 'selected' : ''}>Disetujui</option>
+                                <option value="Ditolak" ${request.status === 'Ditolak' ? 'selected' : ''}>Ditolak</option>
+                            </select>
+                        </td>
+                    `;
+                    roomChangeRequestsBody.appendChild(row);
+                });
+            }
+        }
+        updateRoomRequestPaginationControls();
+    } catch (error) {
+        console.error("Fetch error for room change requests:", error);
+        roomChangeRequestsBody.innerHTML = `<tr><td colspan="9" class="p-4 text-center text-red-600">Terjadi kesalahan jaringan atau server.</td></tr>`;
+        totalRoomRequests = 0;
+        updateRoomRequestPaginationControls();
+    }
 }
 
 function updateRoomRequestPaginationControls() {
-    const totalPages = Math.ceil(filteredRoomRequests.length / itemsPerPage);
-    roomRequestPaginationInfo.textContent = `${Math.min(filteredRoomRequests.length, (currentRoomRequestPage - 1) * itemsPerPage + 1)}-${Math.min(filteredRoomRequests.length, currentRoomRequestPage * itemsPerPage)} of ${filteredRoomRequests.length}`;
+    const totalPages = Math.ceil(totalRoomRequests / itemsPerPage);
+    roomRequestPaginationInfo.textContent = `${Math.min(totalRoomRequests, (currentRoomRequestPage - 1) * itemsPerPage + 1)}-${Math.min(totalRoomRequests, currentRoomRequestPage * itemsPerPage)} of ${totalRoomRequests}`;
     roomRequestCurrentPageSpan.textContent = currentRoomRequestPage;
 
     // Enable/disable Prev/Next buttons
@@ -260,47 +149,70 @@ function updateRoomRequestPaginationControls() {
     }
 }
 
-// --- 5. Fungsi Render Tabel Jadwal Kuliah ---
-function renderCourseSchedules() {
+// --- 4. Fungsi untuk Fetch dan Render Tabel Jadwal Kuliah ---
+async function fetchAndRenderCourseSchedules() {
     courseScheduleBody.innerHTML = ''; // Kosongkan isi tabel
 
-    const startIndex = (currentCourseSchedulePage - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    const paginatedSchedules = filteredCourseSchedules.slice(startIndex, endIndex);
+    const searchTerm = scheduleSearchInput.value.toLowerCase().trim();
+    // URL API untuk mengambil jadwal kuliah dengan paginasi dan pencarian
+    const url = `/SIGARA/php/get_schedules.php?page=${currentCourseSchedulePage}&limit=${itemsPerPage}&search=${encodeURIComponent(searchTerm)}`;
 
-    if (paginatedSchedules.length === 0) {
-        courseScheduleBody.innerHTML = `<tr><td colspan="7" class="p-4 text-center text-gray-600">Tidak ada jadwal kuliah.</td></tr>`;
-        courseSchedulePaginationInfo.textContent = '0-0 of 0';
-        courseScheduleCurrentPageSpan.textContent = '0';
-        courseSchedulePrevBtn.classList.add('opacity-50', 'pointer-events-none');
-        courseScheduleNextBtn.classList.add('opacity-50', 'pointer-events-none');
-        return;
+    try {
+        const response = await fetch(url);
+        if (!response.ok) { // Cek jika respons HTTP tidak OK (misal: 403 Forbidden)
+            if (response.status === 403) {
+                 courseScheduleBody.innerHTML = `<tr><td colspan="7" class="p-4 text-center text-red-600">Akses ditolak. Anda tidak memiliki izin untuk melihat data ini.</td></tr>`;
+                 totalCourseSchedules = 0; // Reset total
+                 updateCourseSchedulePaginationControls(); // Update paginasi untuk menampilkan 0
+                 return;
+            } else {
+                 throw new Error(`HTTP error! status: ${response.status}`);
+            }
+        }
+        const data = await response.json();
+
+        if (data.status === 'error') {
+            console.error("Error fetching schedules:", data.message);
+            courseScheduleBody.innerHTML = `<tr><td colspan="7" class="p-4 text-center text-red-600">Gagal memuat jadwal: ${data.message}</td></tr>`;
+            totalCourseSchedules = 0;
+        } else {
+            globalCourseSchedulesData = data.schedules; // Simpan data yang di-fetch untuk edit modal
+            totalCourseSchedules = data.totalItems;
+
+            if (globalCourseSchedulesData.length === 0) {
+                courseScheduleBody.innerHTML = `<tr><td colspan="7" class="p-4 text-center text-gray-600">Tidak ada jadwal kuliah yang cocok dengan pencarian.</td></tr>`;
+            } else {
+                globalCourseSchedulesData.forEach(schedule => {
+                    const row = document.createElement('tr');
+                    row.className = 'hover:bg-gray-50';
+                    row.innerHTML = `
+                        <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900">${schedule.kelas}</td>
+                        <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-900">${schedule.hari}</td>
+                        <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-900">${schedule.mata_kuliah}</td>
+                        <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-900">${schedule.waktu}</td>
+                        <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-900">${schedule.ruang}</td>
+                        <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-900">${schedule.nama_dosen}</td>
+                        <td class="px-4 py-2 whitespace-nowrap text-right text-sm font-medium">
+                            <button data-id="${schedule.id_jadwal}" class="edit-btn text-purple-600 hover:text-purple-900 mx-1 p-1 rounded-full hover:bg-purple-100"><i class="fas fa-edit"></i></button>
+                            <button data-id="${schedule.id_jadwal}" class="delete-btn text-red-600 hover:text-red-900 mx-1 p-1 rounded-full hover:bg-red-100"><i class="fas fa-trash-alt"></i></button>
+                        </td>
+                    `;
+                    courseScheduleBody.appendChild(row);
+                });
+            }
+        }
+        updateCourseSchedulePaginationControls();
+    } catch (error) {
+        console.error("Fetch error for schedules:", error);
+        courseScheduleBody.innerHTML = `<tr><td colspan="7" class="p-4 text-center text-red-600">Terjadi kesalahan jaringan atau server.</td></tr>`;
+        totalCourseSchedules = 0;
+        updateCourseSchedulePaginationControls();
     }
-
-    paginatedSchedules.forEach(schedule => {
-        const row = document.createElement('tr');
-        row.className = 'hover:bg-gray-50'; // Add hover effect to rows
-        row.innerHTML = `
-            <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900">${schedule.kelas}</td>
-            <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-900">${schedule.hari}</td>
-            <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-900">${schedule.mataKuliah}</td>
-            <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-900">${schedule.waktu}</td>
-            <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-900">${schedule.ruang}</td>
-            <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-900">${schedule.dosen}</td>
-            <td class="px-4 py-2 whitespace-nowrap text-right text-sm font-medium">
-                <button data-id="${schedule.id}" class="edit-btn text-purple-600 hover:text-purple-900 mx-1 p-1 rounded-full hover:bg-purple-100"><i class="fas fa-edit"></i></button>
-                <button data-id="${schedule.id}" class="delete-btn text-red-600 hover:text-red-900 mx-1 p-1 rounded-full hover:bg-red-100"><i class="fas fa-trash-alt"></i></button>
-            </td>
-        `;
-        courseScheduleBody.appendChild(row);
-    });
-
-    updateCourseSchedulePaginationControls();
 }
 
 function updateCourseSchedulePaginationControls() {
-    const totalPages = Math.ceil(filteredCourseSchedules.length / itemsPerPage);
-    courseSchedulePaginationInfo.textContent = `${Math.min(filteredCourseSchedules.length, (currentCourseSchedulePage - 1) * itemsPerPage + 1)}-${Math.min(filteredCourseSchedules.length, currentCourseSchedulePage * itemsPerPage)} of ${filteredCourseSchedules.length}`;
+    const totalPages = Math.ceil(totalCourseSchedules / itemsPerPage);
+    courseSchedulePaginationInfo.textContent = `${Math.min(totalCourseSchedules, (currentCourseSchedulePage - 1) * itemsPerPage + 1)}-${Math.min(totalCourseSchedules, currentCourseSchedulePage * itemsPerPage)} of ${totalCourseSchedules}`;
     courseScheduleCurrentPageSpan.textContent = currentCourseSchedulePage;
 
     // Enable/disable Prev/Next buttons
@@ -317,150 +229,177 @@ function updateCourseSchedulePaginationControls() {
     }
 }
 
-
-// --- 6. Fungsi untuk Membuka Modal (Add/Edit) ---
+// --- 5. Fungsi untuk Membuka Modal (Add/Edit Jadwal) ---
 function openScheduleModal(scheduleData = null) {
-    editScheduleForm.reset(); // Clear previous form data
-    editScheduleId.value = ''; // Ensure ID is clear
+    editScheduleForm.reset(); // Kosongkan form
+    editScheduleId.value = ''; // Pastikan ID bersih
 
-    if (scheduleData) { // Edit mode
+    if (scheduleData) { // Mode Edit: isi form dengan data yang ada
         isEditMode = true;
         modalTitle.textContent = 'Edit Jadwal Kuliah';
         submitScheduleBtn.textContent = 'Simpan Perubahan';
         
-        editScheduleId.value = scheduleData.id;
+        editScheduleId.value = scheduleData.id_jadwal; // Menggunakan id_jadwal
         editKelas.value = scheduleData.kelas;
         editHari.value = scheduleData.hari;
-        editMataKuliah.value = scheduleData.mataKuliah;
+        editMataKuliah.value = scheduleData.mata_kuliah; // Menggunakan mata_kuliah
         editWaktu.value = scheduleData.waktu;
         editRuang.value = scheduleData.ruang;
-        editDosen.value = scheduleData.dosen;
-    } else { // Add mode
+        editDosen.value = scheduleData.nama_dosen; // Menggunakan nama_dosen
+    } else { // Mode Tambah: kosongkan form
         isEditMode = false;
         modalTitle.textContent = 'Tambah Jadwal Kuliah Baru';
         submitScheduleBtn.textContent = 'Tambah Jadwal';
-        // No need to fill fields, they are already reset
     }
 
-    editScheduleModal.classList.remove('hidden'); // Show the modal
+    editScheduleModal.classList.remove('hidden'); // Tampilkan modal
 }
 
-// --- 7. Event Handlers ---
+// --- 6. Event Handlers ---
 
-// Handle status change for Room Change Requests (Dropdown)
-roomChangeRequestsBody.addEventListener('change', (event) => {
+// Handle perubahan status untuk Formulir Ganti Ruang (Dropdown)
+roomChangeRequestsBody.addEventListener('change', async (event) => {
     const targetSelect = event.target.closest('.status-dropdown');
     if (targetSelect) {
         const requestId = parseInt(targetSelect.dataset.id);
         const newStatus = targetSelect.value;
+        const originalStatus = targetSelect.dataset.originalStatus; // Ambil status asli sebelum perubahan
 
-        const request = roomChangeRequests.find(req => req.id === requestId);
-        if (request) {
-            request.status = newStatus;
-            console.log(`Request ID: ${requestId}, New Status: ${newStatus}`);
-            // In a real app, you'd send this update to your backend API here
+        try {
+            const response = await fetch('/SIGARA/php/update_change_request_status.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `id=${requestId}&status=${encodeURIComponent(newStatus)}`
+            });
+            const data = await response.json();
 
-            // Update class of the select element to reflect new status color
-            let statusBadgeClass = '';
-            switch (newStatus) {
-                case 'Diproses':
-                    statusBadgeClass = 'bg-yellow-100 text-yellow-800 border-yellow-300';
-                    break;
-                case 'Disetujui':
-                    statusBadgeClass = 'bg-green-100 text-green-800 border-green-300';
-                    break;
-                case 'Ditolak':
-                    statusBadgeClass = 'bg-red-100 text-red-800 border-red-300';
-                    break;
-                default:
-                    statusBadgeClass = 'bg-gray-100 text-gray-800 border-gray-300';
+            if (data.status === 'success') {
+                console.log('Status berhasil diperbarui di database.');
+                // Update data-original-status setelah berhasil diubah
+                targetSelect.dataset.originalStatus = newStatus; 
+                // Optional: tampilkan notifikasi kecil
+            } else {
+                console.error('Gagal memperbarui status:', data.message);
+                alert('Gagal memperbarui status: ' + data.message);
+                // Kembalikan dropdown ke nilai semula jika update gagal
+                targetSelect.value = originalStatus; 
             }
-            targetSelect.className = `status-dropdown block w-full py-1 px-2 border rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500 text-xs ${statusBadgeClass}`;
         }
+        catch (error) {
+            console.error('Error:', error);
+            alert('Terjadi kesalahan saat menghubungi server.');
+            targetSelect.value = originalStatus; // Kembalikan nilai jika ada error jaringan
+        }
+
+        // Perbarui kelas elemen select untuk mencerminkan warna status baru (visual di frontend)
+        let statusBadgeClass = '';
+        switch (newStatus) {
+            case 'Diproses':
+                statusBadgeClass = 'bg-yellow-100 text-yellow-800 border-yellow-300';
+                break;
+            case 'Disetujui':
+                statusBadgeClass = 'bg-green-100 text-green-800 border-green-300';
+                break;
+            case 'Ditolak':
+                statusBadgeClass = 'bg-red-100 text-red-800 border-red-300';
+                break;
+            default:
+                statusBadgeClass = 'bg-gray-100 text-gray-800 border-gray-300';
+        }
+        targetSelect.className = `status-dropdown block w-full py-1 px-2 border rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500 text-xs ${statusBadgeClass}`;
     }
 });
 
-// Handle edit/delete buttons for Course Schedules
-courseScheduleBody.addEventListener('click', (event) => {
+// Handle tombol edit/delete untuk Jadwal Kuliah
+courseScheduleBody.addEventListener('click', async (event) => { // Pastikan fungsi ini async
     const editBtn = event.target.closest('.edit-btn');
     const deleteBtn = event.target.closest('.delete-btn');
 
     if (editBtn) {
         const scheduleId = parseInt(editBtn.dataset.id);
-        const scheduleToEdit = courseSchedules.find(s => s.id === scheduleId);
+        const scheduleToEdit = globalCourseSchedulesData.find(s => s.id_jadwal === scheduleId); // Cari dari data yang sudah di-fetch
         if (scheduleToEdit) {
-            openScheduleModal(scheduleToEdit); // Open modal in edit mode
+            openScheduleModal(scheduleToEdit);
+        } else {
+            alert('Jadwal tidak ditemukan.');
         }
     } else if (deleteBtn) {
         const scheduleId = parseInt(deleteBtn.dataset.id);
         if (confirm(`Apakah Anda yakin ingin menghapus jadwal ini (ID: ${scheduleId})?`)) {
-            // In a real app, you'd send a DELETE request to your backend API
-            const initialLength = filteredCourseSchedules.length;
-            
-            // Remove from both filtered and original data arrays
-            filteredCourseSchedules = filteredCourseSchedules.filter(s => s.id !== scheduleId);
-            courseSchedules.splice(courseSchedules.findIndex(s => s.id === scheduleId), 1); // Remove from original data source
+            try {
+                const response = await fetch('/SIGARA/php/delete_schedule.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `id=${scheduleId}` // Kirim ID ke backend
+                });
+                const data = await response.json();
 
-            console.log(`Delete schedule with ID: ${scheduleId}`);
-            renderCourseSchedules(); // Re-render table
-
-            // Adjust page if current page becomes empty after deletion
-            if (filteredCourseSchedules.length % itemsPerPage === 0 && currentCourseSchedulePage > 1 && filteredCourseSchedules.length < initialLength) {
-                currentCourseSchedulePage--;
-                renderCourseSchedules();
+                if (data.status === 'success') {
+                    alert(data.message);
+                    fetchAndRenderCourseSchedules(); // Muat ulang data setelah hapus
+                } else {
+                    alert("Error: " + data.message);
+                }
+            } catch (error) {
+                console.error("Delete fetch error:", error);
+                alert("Terjadi kesalahan jaringan atau server saat menghapus.");
             }
         }
     }
 });
 
-// Submit handler for Edit/Add Schedule Form
-editScheduleForm.addEventListener('submit', (event) => {
-    event.preventDefault(); // Prevent default form submission
+// Submit handler untuk Form Tambah/Edit Jadwal
+editScheduleForm.addEventListener('submit', async (event) => { // Pastikan fungsi ini async
+    event.preventDefault(); // Mencegah submit form default
 
-    const newScheduleData = {
-        kelas: editKelas.value,
-        hari: editHari.value,
-        mataKuliah: editMataKuliah.value,
-        waktu: editWaktu.value,
-        ruang: editRuang.value,
-        dosen: editDosen.value
-    };
+    const formData = new FormData();
+    formData.append('kelas', editKelas.value);
+    formData.append('hari', editHari.value);
+    formData.append('mataKuliah', editMataKuliah.value); // Sesuaikan dengan 'mata_kuliah' di PHP
+    formData.append('waktu', editWaktu.value);
+    formData.append('ruang', editRuang.value);
+    formData.append('dosen', editDosen.value); // Sesuaikan dengan 'nama_dosen' di PHP
 
-    if (isEditMode) { // Logic for editing existing schedule
-        const id = parseInt(editScheduleId.value);
-        const originalIndex = courseSchedules.findIndex(s => s.id === id);
-        if (originalIndex !== -1) {
-            courseSchedules[originalIndex] = { ...newScheduleData, id: id }; // Keep original ID
-        }
-        // Also update filtered array to ensure consistency in current view
-        const filteredIndex = filteredCourseSchedules.findIndex(s => s.id === id);
-        if (filteredIndex !== -1) {
-            filteredCourseSchedules[filteredIndex] = { ...newScheduleData, id: id };
-        }
-        console.log("Updated Schedule:", newScheduleData);
-        // In a real app: Send PUT/PATCH request to backend to update schedule
-    } else { // Logic for adding new schedule
-        // For dummy data, generate a simple unique ID
-        const newId = Math.max(...courseSchedules.map(s => s.id)) + 1; // Get max ID and increment
-        const newSchedule = { ...newScheduleData, id: newId };
-        courseSchedules.push(newSchedule); // Add to original data
-        console.log("Added New Schedule:", newSchedule);
-        // In a real app: Send POST request to backend to add new schedule
+    let url = '';
+    if (isEditMode) { // Jika mode edit
+        url = '/SIGARA/php/update_schedule.php';
+        formData.append('id', editScheduleId.value); // Sertakan ID untuk operasi update
+    } else { // Jika mode tambah
+        url = '/SIGARA/php/add_schedule.php';
     }
 
-    // Re-apply filters and render to ensure new/updated item is visible and sorted correctly
-    applyCourseScheduleFilters(); // This will also re-render
-    editScheduleModal.classList.add('hidden'); // Hide the modal
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            body: formData // Mengirim data form
+        });
+        const data = await response.json();
+
+        if (data.status === 'success') {
+            alert(data.message);
+            editScheduleModal.classList.add('hidden'); // Sembunyikan modal
+            fetchAndRenderCourseSchedules(); // Muat ulang data jadwal
+        } else {
+            alert("Error: " + data.message);
+        }
+    } catch (error) {
+        console.error("Fetch error:", error);
+        alert("Terjadi kesalahan jaringan atau server.");
+    }
 });
 
-// Cancel button for Edit Schedule Form
+// Tombol Batal pada Modal Edit Jadwal
 cancelEditBtn.addEventListener('click', () => {
-    editScheduleModal.classList.add('hidden'); // Hide the modal
+    editScheduleModal.classList.add('hidden');
 });
 
-// Allow modal to be closed by clicking outside or pressing ESC
+// Menutup modal jika klik di luar atau tekan ESC
 editScheduleModal.addEventListener('click', (event) => {
-    if (event.target === editScheduleModal) { // Only close if clicking on the overlay itself
+    if (event.target === editScheduleModal) {
         editScheduleModal.classList.add('hidden');
     }
 });
@@ -470,109 +409,63 @@ document.addEventListener('keydown', (event) => {
     }
 });
 
+// --- Event Listener Paginasi dan Pencarian ---
 
-// Pagination Event Listeners for Room Change Requests
+// Paginasi Formulir Ganti Ruang
 roomRequestPrevBtn.addEventListener('click', (event) => {
-    event.preventDefault(); // Prevent default link behavior
+    event.preventDefault();
     if (currentRoomRequestPage > 1) {
         currentRoomRequestPage--;
-        renderRoomChangeRequests();
+        fetchAndRenderRoomChangeRequests();
     }
 });
 
 roomRequestNextBtn.addEventListener('click', (event) => {
-    event.preventDefault(); // Prevent default link behavior
-    const totalPages = Math.ceil(filteredRoomRequests.length / itemsPerPage);
+    event.preventDefault();
+    const totalPages = Math.ceil(totalRoomRequests / itemsPerPage);
     if (currentRoomRequestPage < totalPages) {
         currentRoomRequestPage++;
-        renderRoomChangeRequests();
+        fetchAndRenderRoomChangeRequests();
     }
 });
 
-// Pagination Event Listeners for Course Schedules
+// Paginasi Jadwal Kuliah
 courseSchedulePrevBtn.addEventListener('click', (event) => {
     event.preventDefault();
     if (currentCourseSchedulePage > 1) {
         currentCourseSchedulePage--;
-        renderCourseSchedules();
+        fetchAndRenderCourseSchedules();
     }
 });
 
 courseScheduleNextBtn.addEventListener('click', (event) => {
     event.preventDefault();
-    const totalPages = Math.ceil(filteredCourseSchedules.length / itemsPerPage);
+    const totalPages = Math.ceil(totalCourseSchedules / itemsPerPage);
     if (currentCourseSchedulePage < totalPages) {
         currentCourseSchedulePage++;
-        renderCourseSchedules();
+        fetchAndRenderCourseSchedules();
     }
 });
 
-// Universal Search for Course Schedules
+// Pencarian Jadwal Kuliah
 scheduleSearchInput.addEventListener('input', () => {
-    applyCourseScheduleFilters();
+    currentCourseSchedulePage = 1; // Reset ke halaman pertama saat mencari
+    fetchAndRenderCourseSchedules();
 });
 
-function applyCourseScheduleFilters() {
-    const searchTerm = scheduleSearchInput.value.toLowerCase().trim();
-
-    if (searchTerm === '') {
-        filteredCourseSchedules = [...courseSchedules]; // Reset to original if search is empty
-    } else {
-        filteredCourseSchedules = courseSchedules.filter(schedule => {
-            // Check all relevant fields for the search term
-            return (
-                schedule.kelas.toLowerCase().includes(searchTerm) ||
-                schedule.hari.toLowerCase().includes(searchTerm) ||
-                schedule.mataKuliah.toLowerCase().includes(searchTerm) ||
-                schedule.waktu.toLowerCase().includes(searchTerm) ||
-                schedule.ruang.toLowerCase().includes(searchTerm) ||
-                schedule.dosen.toLowerCase().includes(searchTerm) ||
-                schedule.id.toString().includes(searchTerm) // Also allow searching by ID
-            );
-        });
-    }
-
-    currentCourseSchedulePage = 1; // Reset to first page on filter change
-    renderCourseSchedules();
-}
-
-// Universal Search for Room Change Requests
+// Pencarian Formulir Ganti Ruang
 requestSearchInput.addEventListener('input', () => {
-    applyRoomRequestFilters();
+    currentRoomRequestPage = 1; // Reset ke halaman pertama saat mencari
+    fetchAndRenderRoomChangeRequests();
 });
 
-function applyRoomRequestFilters() {
-    const searchTerm = requestSearchInput.value.toLowerCase().trim();
-
-    if (searchTerm === '') {
-        filteredRoomRequests = [...roomChangeRequests];
-    } else {
-        filteredRoomRequests = roomChangeRequests.filter(request => {
-            return (
-                request.tanggal.toLowerCase().includes(searchTerm) ||
-                request.nama.toLowerCase().includes(searchTerm) ||
-                request.namaDosenPengganti.toLowerCase().includes(searchTerm) ||
-                request.mataKuliah.toLowerCase().includes(searchTerm) ||
-                request.kelas.toLowerCase().includes(searchTerm) ||
-                request.ruang.toLowerCase().includes(searchTerm) ||
-                request.waktu.toLowerCase().includes(searchTerm) ||
-                request.alasan.toLowerCase().includes(searchTerm)
-            );
-        });
-    }
-    currentRoomRequestPage = 1; // Reset to first page on filter change
-    renderRoomChangeRequests();
-}
-
-
-// --- Add Schedule Button functionality ---
+// Tombol "Tambah Jadwal"
 addScheduleBtn.addEventListener('click', () => {
-    openScheduleModal(null); // Open modal in add mode (passing null for new schedule)
+    openScheduleModal(null); // Buka modal dalam mode tambah
 });
-
 
 // --- 7. Inisialisasi Saat Halaman Dimuat ---
 document.addEventListener('DOMContentLoaded', () => {
-    renderRoomChangeRequests();
-    renderCourseSchedules();
+    fetchAndRenderRoomChangeRequests(); // Muat data formulir
+    fetchAndRenderCourseSchedules(); // Muat data jadwal
 });
